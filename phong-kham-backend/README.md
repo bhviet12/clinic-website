@@ -129,3 +129,10 @@ Private project
 ---
 
 **Chúc bạn thành công!** 🎉
+
+
+git add .
+git commit -m "Mô tả thay đổi"
+git push origin main && git push gitlab main
+
+cd "/home/bhviet/Màn hình nền/clinic-website " && git add . && git commit -m "Update" && git push gitlab main

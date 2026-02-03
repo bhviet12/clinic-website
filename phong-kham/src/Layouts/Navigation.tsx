@@ -137,17 +137,6 @@ const Navigation = () => {
               {currentLang === 'vi' ? 'VI' : 'EN'}
             </button>
 
-            {/* Dashboard Link - Only show if authenticated */}
-            {isAuthenticated && (
-              <Link 
-                to="/dashboard" 
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                <FaUser className="text-base" />
-                <span>Dashboard</span>
-              </Link>
-            )}
-
             {/* Contact Button */}
             <Link to="/contact">
               <Button color="primary" size="large">

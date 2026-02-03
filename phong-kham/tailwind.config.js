@@ -23,8 +23,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['EB Garamond', 'serif'],
-        sans: ['Optima', 'Optima Nova', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'Roboto', 'Open Sans', 'Arial', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
     },
   },

@@ -38,7 +38,7 @@ const ColorButton: FC<ColorButtonProps> = ({
         borderRadius: "50px",
         color: "#ffffff",
         boxShadow: "0 2px 6px rgba(30, 58, 95, 0.25), 0 -1px 3px rgba(30, 58, 95, 0.15)",
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: "'EB Garamond', serif",
         fontWeight: 400,
       },
       secondary: {
@@ -47,7 +47,7 @@ const ColorButton: FC<ColorButtonProps> = ({
         borderRadius: "50px",
         color: "#ffffff",
         boxShadow: "0 2px 6px rgba(37, 99, 235, 0.25), 0 -1px 3px rgba(37, 99, 235, 0.15)",
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: "'EB Garamond', serif",
         fontWeight: 400,
       },
       third: {
@@ -57,7 +57,7 @@ const ColorButton: FC<ColorButtonProps> = ({
         color: "#1e3a5f",
         fontWeight: 400,
         boxShadow: "0 2px 6px rgba(30, 58, 95, 0.08), 0 -1px 3px rgba(30, 58, 95, 0.04)",
-        fontFamily: "'Playfair Display', serif",
+        fontFamily: "'EB Garamond', serif",
       }
     },
     hover: {

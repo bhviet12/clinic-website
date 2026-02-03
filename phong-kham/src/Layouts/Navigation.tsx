@@ -62,7 +62,7 @@ const Navigation = () => {
             <Link to="/" onClick={closeMenu}>
               <img src={logo} alt="Logo" className='w-36 sm:w-40 md:w-44 lg:w-48 xl:w-52 h-auto' />
             </Link>
-                    </div>
+          </div>
 
           {/* Navigation Links - Desktop */}
           <div className="hidden lg:flex flex-1 justify-center">
@@ -92,8 +92,8 @@ const Navigation = () => {
                   {t('navigation.contact')}
                 </Link>
               </li>
-                    </ul>
-                </div>
+            </ul>
+          </div>
 
           {/* Icons & Button - Desktop */}
           <div className="hidden lg:flex flex-shrink-0 items-center gap-4">
@@ -137,13 +137,24 @@ const Navigation = () => {
               {currentLang === 'vi' ? 'VI' : 'EN'}
             </button>
 
+            {/* Dashboard Link - Only show if authenticated */}
+            {isAuthenticated && (
+              <Link 
+                to="/dashboard" 
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                <FaUser className="text-base" />
+                <span>Dashboard</span>
+              </Link>
+            )}
+
             {/* Contact Button */}
             <Link to="/contact">
               <Button color="primary" size="large">
                 {t('navigation.contactNow')}
               </Button>
             </Link>
-            </div>
+          </div>
 
           {/* Mobile Icons */}
           <div className="flex lg:hidden items-center gap-3">
@@ -195,7 +206,7 @@ const Navigation = () => {
             >
               {isMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
             </button>
-            </div>
+          </div>
         </div>
 
         {/* Mobile Menu */}

@@ -10,15 +10,10 @@ const Login = () => {
   const { login } = useAuth()
   const navigate = useNavigate()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    try {
-      await login(email, password, selectedRole)
-      navigate('/dashboard')
-    } catch (error) {
-      console.error('Login error:', error)
-      // Error handling is done in AuthContext
-    }
+    login(email, password, selectedRole)
+    navigate('/dashboard')
   }
 
   const roles = [

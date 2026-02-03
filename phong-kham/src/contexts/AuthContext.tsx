@@ -1,5 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react'
-import { authAPI } from '../services/api'
+import { createContext, useContext, useState, ReactNode } from 'react'
 
 type UserRole = 'admin' | 'receptionist' | 'doctor'
 
@@ -12,10 +11,9 @@ interface User {
 
 interface AuthContextType {
   user: User | null
-  login: (email: string, password: string, role: UserRole) => Promise<void>
-  logout: () => Promise<void>
+  login: (email: string, password: string, role: UserRole) => void
+  logout: () => void
   isAuthenticated: boolean
-  loading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -34,68 +32,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const savedUser = localStorage.getItem('user')
     return savedUser ? JSON.parse(savedUser) : null
   })
-  const [loading, setLoading] = useState(true)
 
-  // Check if user is authenticated on mount
-  useEffect(() => {
-    const checkAuth = async () => {
-      const token = localStorage.getItem('token')
-      const savedUser = localStorage.getItem('user')
-      
-      if (token && savedUser) {
-        try {
-          // Verify token with backend
-          const userData = await authAPI.getCurrentUser()
-          setUser(userData)
-        } catch (error) {
-          // Token invalid, clear storage
-          localStorage.removeItem('token')
-          localStorage.removeItem('user')
-          setUser(null)
-        }
-      }
-      setLoading(false)
+  const login = (email: string, _password: string, role: UserRole) => {
+    // Mock login - in real app, this would call an API
+    const mockUser: User = {
+      id: 1,
+      name: role === 'admin' ? 'Admin User' : role === 'receptionist' ? 'Lễ tân' : 'Bác sĩ',
+      email,
+      role
     }
-    
-    checkAuth()
-  }, [])
-
-  const login = async (email: string, password: string, role: UserRole) => {
-    try {
-      setLoading(true)
-      const response = await authAPI.login(email, password, role)
-      
-      // Store token and user data
-      localStorage.setItem('token', response.token)
-      localStorage.setItem('user', JSON.stringify(response.user))
-      setUser(response.user)
-    } catch (error: any) {
-      // Fallback to mock login if backend is not available
-      console.warn('Backend not available, using mock login:', error.message)
-      const mockUser: User = {
-        id: 1,
-        name: role === 'admin' ? 'Admin User' : role === 'receptionist' ? 'Lễ tân' : 'Bác sĩ',
-        email,
-        role
-      }
-      setUser(mockUser)
-      localStorage.setItem('user', JSON.stringify(mockUser))
-      localStorage.setItem('token', 'mock-token')
-    } finally {
-      setLoading(false)
-    }
+    setUser(mockUser)
+    localStorage.setItem('user', JSON.stringify(mockUser))
   }
 
-  const logout = async () => {
-    try {
-      await authAPI.logout()
-    } catch (error) {
-      console.error('Logout error:', error)
-    } finally {
-      setUser(null)
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
-    }
+  const logout = () => {
+    setUser(null)
+    localStorage.removeItem('user')
   }
 
   return (
@@ -103,8 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       user,
       login,
       logout,
-      isAuthenticated: !!user,
-      loading
+      isAuthenticated: !!user
     }}>
       {children}
     </AuthContext.Provider>
